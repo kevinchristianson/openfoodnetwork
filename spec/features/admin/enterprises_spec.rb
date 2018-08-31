@@ -77,7 +77,7 @@ feature %q{
 
     visit '/admin/enterprises'
     within "tr.enterprise-#{@enterprise.id}" do
-      first("a", text: 'Edit Profile').trigger 'click'
+      first("a", text: 'Settings').trigger 'click'
     end
 
     fill_in 'enterprise_name', :with => 'Eaterprises'
@@ -368,7 +368,7 @@ feature %q{
           click_button 'Create'
 
           # Then it should show me an error
-          expect(page).to_not have_content 'Enterprise "zzz" has been successfully created!'
+          expect(page).to have_no_content 'Enterprise "zzz" has been successfully created!'
           expect(page).to have_content "#{enterprise_user.email} is not permitted to own any more enterprises (limit is 1)."
         end
       end
@@ -376,7 +376,7 @@ feature %q{
 
     scenario "editing enterprises I manage" do
       visit admin_enterprises_path
-      within("tbody#e_#{distributor1.id}") { click_link 'Manage' }
+      within("tbody#e_#{distributor1.id}") { click_link 'Settings' }
 
       fill_in 'enterprise_name', :with => 'Eaterprises'
 
@@ -392,7 +392,7 @@ feature %q{
     describe "enterprises I have edit permission for, but do not manage" do
       it "allows me to edit them" do
         visit admin_enterprises_path
-        within("tbody#e_#{distributor3.id}") { click_link 'Manage' }
+        within("tbody#e_#{distributor3.id}") { click_link 'Settings' }
 
         fill_in 'enterprise_name', :with => 'Eaterprises'
 
@@ -407,7 +407,7 @@ feature %q{
 
       it "does not show links to manage shipping methods, payment methods or enterprise fees on the edit page" do
         visit admin_enterprises_path
-        within("tbody#e_#{distributor3.id}") { click_link 'Manage' }
+        within("tbody#e_#{distributor3.id}") { click_link 'Settings' }
 
         within(".side_menu") do
           page.should_not have_link 'Shipping Methods'
@@ -419,7 +419,7 @@ feature %q{
 
     scenario "editing images for an enterprise" do
       visit admin_enterprises_path
-      within("tbody#e_#{distributor1.id}") { click_link 'Manage' }
+      within("tbody#e_#{distributor1.id}") { click_link 'Settings' }
 
       within(".side_menu") do
         click_link "Images"
@@ -432,7 +432,7 @@ feature %q{
     scenario "managing producer properties" do
       create(:property, name: "Certified Organic")
       visit admin_enterprises_path
-      within("#e_#{supplier1.id}") { click_link 'Manage' }
+      within("#e_#{supplier1.id}") { click_link 'Settings' }
       within(".side_menu") do
         click_link "Properties"
       end

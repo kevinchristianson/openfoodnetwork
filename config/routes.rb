@@ -24,6 +24,14 @@ Openfoodnetwork::Application.routes.draw do
   get "/connect", to: redirect("https://openfoodnetwork.org/#{ENV['DEFAULT_COUNTRY_CODE'].andand.downcase}/connect/")
   get "/learn", to: redirect("https://openfoodnetwork.org/#{ENV['DEFAULT_COUNTRY_CODE'].andand.downcase}/learn/")
 
+  get "/cart", :to => "spree/orders#edit", :as => :cart
+  put "/cart", :to => "spree/orders#update", :as => :update_cart
+  put "/cart/empty", :to => 'spree/orders#empty', :as => :empty_cart
+
+  resource :cart, controller: "cart" do
+    post :populate
+  end
+
   resource :shop, controller: "shop" do
     get :products
     post :order_cycle
@@ -80,6 +88,8 @@ Openfoodnetwork::Application.routes.draw do
   get '/:id/shop', to: 'enterprises#shop', as: 'enterprise_shop'
   get "/enterprises/:permalink", to: redirect("/") # Legacy enterprise URL
 
+  get "/angular-templates/:id", to: "angular_templates#show", constraints: { name: %r{[\/\w\.]+} }
+
   namespace :api do
     resources :enterprises do
       post :update_image, on: :member
@@ -95,20 +105,17 @@ Openfoodnetwork::Application.routes.draw do
       get :job_queue
     end
 
+    scope '/cookies' do
+      resource :consent, only: [:show, :create, :destroy], :controller => "cookies_consent"
+    end
+
     resources :customers, only: [:index, :update]
 
     post '/product_images/:product_id', to: 'product_images#update_product_image'
-  end
-
-  namespace :open_food_network do
-    resources :cart do
-      post :add_variant
-    end
   end
 
   get 'sitemap.xml', to: 'sitemap#index', defaults: { format: 'xml' }
 
   # Mount Spree's routes
   mount Spree::Core::Engine, :at => '/'
-
 end

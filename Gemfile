@@ -20,7 +20,7 @@ gem 'spree_auth_devise', github: 'openfoodfoundation/spree_auth_devise', branch:
 # - Change type of password from string to password to hide it in the form
 gem 'spree_paypal_express', github: "openfoodfoundation/better_spree_paypal_express", branch: "spree-upgrade-intermediate"
 #gem 'spree_paypal_express', github: "spree-contrib/better_spree_paypal_express", branch: "1-3-stable"
-gem 'stripe', '~> 3.3.1'
+gem 'stripe', '~> 3.3.2'
 # We need at least this version to have Digicert's root certificate
 # which is needed for Pin Payments (and possibly others).
 gem 'activemerchant', '~> 1.78'
@@ -48,7 +48,10 @@ gem 'andand'
 gem 'truncate_html'
 gem 'representative_view'
 gem 'rabl'
-gem "active_model_serializers"
+
+# AMS is pinned to 0.8.4 because 0.9.x is a complete re-write, as is 0.10.x
+# Once Rails is updated to 5.x we should bump directly to 0.10.x
+gem "active_model_serializers", "0.8.4"
 gem 'oj'
 gem 'deface', github: 'spree/deface', ref: '1110a13'
 gem 'paperclip'
@@ -106,7 +109,7 @@ gem 'ofn-qz', github: 'openfoodfoundation/ofn-qz', ref: '60da2ae4c44cbb4c8d602f5
 
 group :test, :development do
   # Pretty printed test output
-  gem 'fuubar', '~> 2.2.0'
+  gem 'fuubar', '~> 2.3.2'
   gem 'rspec-rails', ">= 3.5.2"
   gem 'shoulda-matchers'
   gem "factory_bot_rails", require: false
@@ -136,7 +139,6 @@ group :development do
   gem 'guard'
   gem 'listen', '3.0.8' # 3.1.0 requires ruby 2.2
   gem 'guard-livereload'
-  gem 'rack-livereload'
   gem 'guard-rails'
   gem 'guard-rspec', '~> 4.7.3'
   gem 'parallel_tests'
