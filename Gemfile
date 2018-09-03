@@ -48,7 +48,10 @@ gem 'andand'
 gem 'truncate_html'
 gem 'representative_view'
 gem 'rabl'
-gem "active_model_serializers"
+
+# AMS is pinned to 0.8.4 because 0.9.x is a complete re-write, as is 0.10.x
+# Once Rails is updated to 5.x we should bump directly to 0.10.x
+gem "active_model_serializers", "0.8.4"
 gem 'oj'
 gem 'deface', github: 'spree/deface', ref: '1110a13'
 gem 'paperclip'
@@ -136,7 +139,6 @@ group :development do
   gem 'guard'
   gem 'listen', '3.0.8' # 3.1.0 requires ruby 2.2
   gem 'guard-livereload'
-  gem 'rack-livereload'
   gem 'guard-rails'
   gem 'guard-rspec', '~> 4.7.3'
   gem 'parallel_tests'
