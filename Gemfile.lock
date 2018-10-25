@@ -769,7 +769,6 @@ DEPENDENCIES
   capybara (>= 2.15.4)
   coffee-rails (~> 3.2.1)
   compass-rails
-  web!
   custom_error_message!
   daemons
   dalli
@@ -846,6 +845,7 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   unicorn
   unicorn-rails
+  web!
   webmock
   whenever
   wicked_pdf
@@ -855,4 +855,4 @@ RUBY VERSION
    ruby 2.1.5p273
 
 BUNDLED WITH
-   1.16.4
+   1.16.6
