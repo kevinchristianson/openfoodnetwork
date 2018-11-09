@@ -113,7 +113,6 @@ $ createdb open_food_network_test --owner=ofn
 ```
 If these commands succeed, you should be able to [continue the setup process](#get-it-running).
 
-### Resources
 [developer-wiki]: https://github.com/openfoodfoundation/openfoodnetwork/wiki
 [sierra]: https://github.com/openfoodfoundation/openfoodnetwork/wiki/Development-Environment-Setup:-macOS-(Sierra)
 [el-capitan]: https://github.com/openfoodfoundation/openfoodnetwork/wiki/Development-Environment-Setup:-OS-X-(El-Capitan)
