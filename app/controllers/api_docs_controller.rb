@@ -40,4 +40,8 @@ class ApidocsController
   def index
     render json: Swagger::Blocks.build_root_json(SWAGGERED_CLASSES)
   end
+
+  def ui
+    render "api/docs/ui"
+  end
 end

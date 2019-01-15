@@ -28,6 +28,8 @@ Openfoodnetwork::Application.routes.draw do
   put "/cart", :to => "spree/orders#update", :as => :update_cart
   put "/cart/empty", :to => 'spree/orders#empty', :as => :empty_cart
 
+  resources :api_docs, only: [:index, :ui]
+
   resource :cart, controller: "cart" do
     post :populate
   end
