@@ -143,6 +143,7 @@ group :development do
   gem 'listen', '3.0.8' # 3.1.0 requires ruby 2.2
   gem 'guard-livereload'
   gem 'guard-rails'
+  gem 'swagger-blocks'
   gem 'guard-rspec', '~> 4.7.3'
   gem 'rubocop', '>= 0.49.1'
 

@@ -1107,6 +1107,11 @@ en:
         no_subscriptions: No subscriptions yet...
         why_dont_you_add_one: Why don't you add one? :)
         no_matching_subscriptions: No matching subscriptions found
+    vendor:
+      assets:
+        javascripts:
+          enter_url: Please enter a URL to insert
+
 
     schedules:
       destroy:
