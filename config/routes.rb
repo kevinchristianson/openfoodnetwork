@@ -28,7 +28,9 @@ Openfoodnetwork::Application.routes.draw do
   put "/cart", :to => "spree/orders#update", :as => :update_cart
   put "/cart/empty", :to => 'spree/orders#empty', :as => :empty_cart
 
-  resources :api_docs, only: [:index, :ui]
+ # resources :api_docs, only: [:index, :ui]
+  get '/api' => redirect('/swagger/dist/index.html?url=http://localhost:3000/apidocs')
+  resources :apidocs, only: [:index]
 
   resource :cart, controller: "cart" do
     post :populate
