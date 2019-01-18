@@ -69,13 +69,19 @@ Tests, both unit and integration, are based on RSpec. To run the test suite, fir
 
     bundle exec rake db:test:prepare
 
-Then the tests can be run with:
+Then the main application tests can be run with:
 
     bundle exec rspec spec
     
 Note: If your OS is not explicitly supported in the setup guides then not all tests may pass. However, you may still be able to develop. Get in touch with the [#dev][slack-dev] channel on Slack to troubleshoot issues and determine if they will preclude you from contributing to OFN.
 
-Additionally, make sure that the time zone on your machine matches the one defined in `config/application.yml` (it should be Melbourne). Setting your machine's time zone to any other zone has the potential to cause test failures.
+The tests of all custom engines can be run with:
+
+    bundle exec rake openfoodnetwork:specs:engines:rspec
+
+Note: If your OS is not explicitly supported in the setup guides then not all tests may pass. However, you may still be able to develop. Get in touch with the [#dev][slack-dev] channel on Slack to troubleshoot issues and determine if they will preclude you from contributing to OFN.
+
+Note: The time zone on your machine should match the one defined in `config/application.yml`.
 
 The project is configured to use [Zeus][zeus] to reduce the pre-test startup time while Rails loads. See the [Zeus GitHub page][zeus] for usage instructions.
 
@@ -113,9 +119,8 @@ $ createdb open_food_network_test --owner=ofn
 ```
 If these commands succeed, you should be able to [continue the setup process](#get-it-running).
 
-### Resources
 [developer-wiki]: https://github.com/openfoodfoundation/openfoodnetwork/wiki
-[sierra]: https://github.com/openfoodfoundation/openfoodnetwork/wiki/Development-Environment-Setup:-macOS-(Sierra)
+[sierra]: https://github.com/openfoodfoundation/openfoodnetwork/wiki/Development-Environment-Setup%3A-macOS-%28Sierra%2C-HighSierra-and-Mojave%29
 [el-capitan]: https://github.com/openfoodfoundation/openfoodnetwork/wiki/Development-Environment-Setup:-OS-X-(El-Capitan)
 [ubuntu]: https://github.com/openfoodfoundation/openfoodnetwork/wiki/Development-Environment-Setup:-Ubuntu
 [wiki]: https://github.com/openfoodfoundation/openfoodnetwork/wiki

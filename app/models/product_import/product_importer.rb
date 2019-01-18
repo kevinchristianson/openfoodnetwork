@@ -100,7 +100,8 @@ module ProductImport
         entries[entry.line_number] = {
           attributes: entry.displayable_attributes,
           validates_as: entry.validates_as,
-          errors: entry.invalid_attributes
+          errors: entry.invalid_attributes,
+          product_validations: entry.product_validations
         }
       end
       entries.to_json
@@ -205,7 +206,7 @@ module ProductImport
 
     def open_spreadsheet
       if accepted_mimetype
-        Roo::Spreadsheet.open(@file, extension: accepted_mimetype)
+        Roo::Spreadsheet.open(@file, extension: accepted_mimetype, encoding: Encoding::UTF_8)
       else
         errors.add(:importer, I18n.t(:product_importer_spreadsheet_error))
         delete_uploaded_file
@@ -226,6 +227,14 @@ module ProductImport
       (2..@sheet.last_row).map do |i|
         @sheet.row(i)
       end
+    rescue ArgumentError => e
+      if e.message.include? 'invalid byte sequence'
+        errors.add(:importer, I18n.t('admin.product_import.model.encoding_error'))
+      else
+        errors.add(:importer, I18n.t('admin.product_import.model.unexpected_error',
+                                     error_message: e.message))
+      end
+      []
     end
 
     def build_entries_in_range

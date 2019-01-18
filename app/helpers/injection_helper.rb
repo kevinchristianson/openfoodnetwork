@@ -1,21 +1,17 @@
 require 'open_food_network/enterprise_injection_data'
 
 module InjectionHelper
-  def inject_enterprises
-    inject_json_ams "enterprises", Enterprise.activated.includes(address: :state).all, Api::EnterpriseSerializer, enterprise_injection_data
+  def inject_enterprises(enterprises = Enterprise.activated.includes(address: :state).all)
+    inject_json_ams(
+      'enterprises',
+      enterprises,
+      Api::EnterpriseSerializer,
+      enterprise_injection_data
+    )
   end
 
   def inject_enterprise_and_relatives
     inject_json_ams "enterprises", current_distributor.relatives_including_self.activated.includes(address: :state).all, Api::EnterpriseSerializer, enterprise_injection_data
-  end
-
-  def inject_shop_enterprises
-    ocs = if current_order_cycle
-            [current_order_cycle]
-          else
-            OrderCycle.not_closed.with_distributor(current_distributor)
-          end
-    inject_json_ams "enterprises", current_distributor.plus_relatives_and_oc_producers(ocs).activated.includes(address: :state).all, Api::EnterpriseSerializer, enterprise_injection_data
   end
 
   def inject_group_enterprises

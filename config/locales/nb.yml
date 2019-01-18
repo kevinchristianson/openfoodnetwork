@@ -1,5 +1,5 @@
 nb:
-  language_name: "Engelsk"
+  language_name: "Norsk"
   activerecord:
     attributes:
       spree/order:
@@ -24,6 +24,11 @@ nb:
           attributes:
             orders_close_at:
               after_orders_open_at: må være etter åpningsdato
+        variant_override:
+          count_on_hand:
+            using_producer_stock_settings_but_count_on_hand_set: "må være tomt fordi du bruker produsentens lagerinnstillinger"
+            on_demand_but_count_on_hand_set: "må være tom hvis på forespørsel"
+            limited_stock_but_no_count_on_hand: "må spesifiseres fordi det tvinger begrenset lager"
   activemodel:
     errors:
       models:
@@ -170,7 +175,7 @@ nb:
   remove: Fjern
   or: eller
   collapse_all: Skjul alle
-  expand_all: Vis alle
+  expand_all: Utvid alle
   loading: Laster...
   show_more: Vis mer
   show_all: Vis alle
@@ -195,6 +200,7 @@ nb:
   admin_and_handling: Admin & Håndtering
   profile: Profil
   supplier_only: Kun leverandør
+  has_shopfront: Har Butikk
   weight: Vekt
   volume: Volum
   items: Elementer
@@ -216,6 +222,10 @@ nb:
   quantity: Mengde
   pick_up: Hent
   copy: Kopier
+  password_confirmation: Passordbekreftelse
+  reset_password_token: Tilbakestill passordtoken
+  expired: er utløpt, vennligst be om en ny
+  back_to_payments_list: "Tilbake til betalingsliste"
   actions:
     create_and_add_another: "Opprett og legg til en annen"
   admin:
@@ -311,8 +321,8 @@ nb:
         bill_calculation_settings: "Kalkulatorinnstillinger for Regninger"
         bill_calculation_settings_tip: "Tilpass hvor mye bedrifter skal faktureres for hver måned for bruken av OFN."
         shop_trial_length: "Lengde på prøveperiode for butikker (dager)"
-        shop_trial_length_tip: "Antall dager prøveperiode for en bedrift som er satt opp som butikk."
-        fixed_monthly_charge: "Fast månedlig belastning"
+        shop_trial_length_tip: "Hvor lang tid (i dager) bedrifter som er satt opp som butikker, kan kjøre som prøveperiode."
+        fixed_monthly_charge: "Fast Månedlig Belastning"
         fixed_monthly_charge_tip: "En fast månedlig belastning for alle bedrifter som er satt opp som butikk og har overskredet minimum fakturert omsetning (hvis konfigurert)."
         percentage_of_turnover: "Prosent av omsetning"
         percentage_of_turnover_tip: "Når større enn null, gjelder denne raten (0.0 - 1.0) på total omsetning for hver butikk og lagt til enhver fast rate (til venstre) for å beregne den månedlige fakturaen."
@@ -378,11 +388,11 @@ nb:
         code: Kode
         duplicate_code: "Denne koden er allerede brukt."
         bill_address: "Fakturaadresse"
-        ship_address: "Leveringsstatus"
+        ship_address: "Leveringsadresse"
         update_address_success: 'Adresse oppdatert.'
         update_address_error: 'Beklager! Vennligst skriv alle de obligatoriske feltene!'
         edit_bill_address: 'Rediger fakturaadresse'
-        edit_ship_address: 'Rediger leveringsadresse'
+        edit_ship_address: 'Rediger Leveringsadresse'
         required_fileds: 'Obligatoriske felt er merket med en stjerne'
         select_country: 'Velg Land'
         select_state: 'Velg Fylke'
@@ -465,6 +475,8 @@ nb:
         inventory_no_permission: du har ikke tillatelse til å opprette lager for denne produsenten
         none_saved: kunne ikke lagre noen produkter
         line_number: "Linje %{number}:"
+        encoding_error: "Vennligst sjekk språkinnstillingen til kildefilen din og kontroller at den er lagret med UTF-8-koding"
+        unexpected_error: "Produktimport støtte på en uventet feil ved åpning av filen: %{error_message}"
       index:
         select_file: Velg et regneark for å laste opp
         spreadsheet: Regneark
@@ -498,6 +510,7 @@ nb:
         no_permission: du har ikke tillatelse til å administrere denne bedriften
         not_found: bedriften kunne ikke bli funnet i databasen
         no_name: Ingen navn
+        blank_enterprise: noen produkter har ikke en bedrift definert
         reset_absent?: Tilbakestill fraværende produkter
         reset_absent_tip: Sett lager til null for alle gjeldende produkter som ikke er til stede i filen
         overwrite_all: Overskrive alt
@@ -568,7 +581,7 @@ nb:
         tip: "Bruk denne siden for å endre produktantall på tvers av flere bestillinger. Produkter kan også fjernes fra bestillinger helt, hvis påkrevd."
         shared: "Delt Ressurs?"
         order_no: "Bestillingsnr."
-        order_date: "Bestillingsdato"
+        order_date: "Fullført på"
         max: "Max"
         product_unit: "Produkt: Enhet"
         weight_volume: "Vekt/Volum"
@@ -709,6 +722,9 @@ nb:
           close_date: Stengedato
         social:
           twitter_placeholder: f.eks. @the_prof
+          instagram_placeholder: f.eks. the_prof
+          facebook_placeholder: f.eks. www.facebook.com/FirmaNavnHer
+          linkedin_placeholder: f.eks. www.linkedin.com/in/YourNameHere
         stripe_connect:
           connect_with_stripe: "Koble til Stripe"
           stripe_connect_intro: "For å akseptere betaling med kredittkort må du koble din Stripe konto til Open Food Network. Bruk knappen til høyre for å komme i gang."
@@ -1149,9 +1165,9 @@ nb:
   menu_5_title: "Om"
   menu_5_url: "https://openfoodnetwork.org/ofn-local/open-food-network-scandinavia/"
   menu_6_title: "Koble til"
-  menu_6_url: " "
+  menu_6_url: "https://openfoodnetwork.org/au/connect/"
   menu_7_title: "Lære"
-  menu_7_url: " "
+  menu_7_url: "https://openfoodnetwork.org/au/learn/"
   logo: "Logo (640x130)"
   logo_mobile: "Mobil logo (75x26)"
   logo_mobile_svg: "Mobil logo (SVG)"
@@ -1258,7 +1274,7 @@ nb:
       cookie_stripe_desc: "Data samlet inn av betalingsprosessoren vår Stripe for svindeloppdagelse https://stripe.com/cookies-policy/legal. Ikke alle butikker bruker Stripe som betalingsmetode, men det er en god praksis å forhindre at svindel gjelder for alle sider. Stripe bygger sannsynligvis et bilde av hvilke av våre sider som til vanlig samhandler med API-en og deretter flagge alt uvanlig. Så å sette Stripe-cookien har en bredere funksjon enn bare å levere en betalingsmetode til en bruker. Fjerning av det kan påvirke sikkerheten til selve tjenesten. Du kan lære mer om Stripe og lese retningslinjene for personvern på https://stripe.com/privacy."
       statistics_cookies: "Statistikkkapsler"
       statistics_cookies_desc: "Følgende er ikke strengt nødvendige, men hjelper deg med å gi deg den beste brukeropplevelsen ved å tillate oss å analysere brukeradferd, identifisere hvilke funksjoner du bruker mest, eller ikke bruker, forstå brukeropplevelsesproblemer osv."
-      statistics_cookies_analytics_desc_html: "For å samle og analysere plattformbruksdata bruker vi Google Analytics, da det var standardtjenesten som var koblet til Spree (ehandel open source programvare som vi bygde på), men visjonen vår er å bytte til <a href = 'https: / /matomo.org/ 'target =' _ blank '> Matomo </a> (ex Piwik, open source analyseverktøy som er GDPR-kompatibelt og beskytter ditt privatliv) så snart vi kan."
+      statistics_cookies_analytics_desc_html: "For å samle og analysere plattformbruksdata bruker vi Google Analytics, da det var standardtjenesten som var koblet til Spree (ehandel open source programvare som vi bygde på), men visjonen vår er å bytte til <a href='https://matomo.org/' target='_blank'>Matomo</a> (ex Piwik, open source analyseverktøy som er GDPR-kompatibelt og beskytter ditt privatliv) så snart vi kan."
       statistics_cookies_matomo_desc_html: "For å samle og analysere plattformbruksdata bruker vi <a href='https://matomo.org/' target='_blank'> Matomo </a> (ex Piwik), et åpen kildekodeanalyseverktøy som er kompatibelt med GDPR og beskytter personvernet ditt."
       statistics_cookies_matomo_optout: "Ønsker du å melde deg av Matomo analytics? Vi samler ikke inn personlige data, og Matomo hjelper oss med å forbedre vår tjeneste, men vi respekterer ditt valg :-)"
       cookie_analytics_utma_desc: "Brukes til å skille mellom brukere og økter. Kapselen er opprettet når javascriptbiblioteket utføres, og ingen eksisterende __utma-informasjonskapsler eksisterer. Cookien oppdateres hver gang data sendes til Google Analytics."
@@ -1488,7 +1504,7 @@ nb:
   products_update_error_data: "Lagring mislyktes på grunn av ugyldige data:"
   products_changes_saved: "Endringene er lagret."
   search_no_results_html: "Beklager, ingen treff på %{query}. Prøv på nytt?"
-  components_profiles_popover: "Profiler har ikke butikkvindu på Open Food Network men kan ha sin egen fysiske butikk eller nettbutikk et annet sted"
+  components_profiles_popover: "Profiler har ikke butikk på Open Food Network men kan ha sin egen fysiske butikk eller nettbutikk et annet sted"
   components_profiles_show: "Vis profiler"
   components_filters_nofilters: "Ingen filter"
   components_filters_clearfilters: "Fjern alle filtre"
@@ -1699,6 +1715,11 @@ nb:
   update_and_recalculate_fees: "Oppdater og regn avgifter på nytt"
   registration:
     steps:
+      images:
+        continue: "Fortsett"
+        back: "Tilbake"
+        headline: "Takk!"
+        description: "La oss laste opp noen fine bilder så profilen din ser flott ut! :)"
       type:
         headline: "Siste skritt for å legge til %{enterprise}!"
         question: "Er du en produsent?"
@@ -1790,7 +1811,6 @@ nb:
   enterprise_long_desc: "Lang beskrivelse"
   enterprise_long_desc_placeholder: "Dette er muligheten din til å fortelle historien om din virksomhet - hva gjør deg annerledes og flott? Vi vil foreslå å holde din beskrivelse til under 600 tegn eller 150 ord."
   enterprise_long_desc_length: "%{num} tegn / opptil 600 anbefales"
-  enterprise_limit: Bedriftsgrense
   enterprise_abn: "Org. nr."
   enterprise_abn_placeholder: "f.eks. 999 000 123"
   enterprise_acn: "MVA nr."
@@ -1834,8 +1854,6 @@ nb:
   registration_type_error: "Vennligst velg en. Er du produsent?"
   registration_type_producer_help: "Produsenter lager deilige ting å spise og/eller drikke. Du er en produsent hvis du dyrker det, driver med det, brygger det, baker det, fermenterer det, melker det eller former det."
   registration_type_no_producer_help: "Hvis du ikke er en produsent, er du sannsynligvis noen som selger og distribuerer mat. Du kan være en hub, samvirke, kjøpegruppe, forhandler, grossist eller annet."
-  registration_images_headline: "Takk!"
-  registration_images_description: "La oss laste opp noen fine bilder så profilen din ser flott ut! :)"
   registration_detail_headline: "La oss komme i gang"
   registration_detail_enterprise: "Kult! Først må vi vite litt om bedriften:"
   registration_detail_producer: "Kult! Først må vi vite litt om gården din:"
@@ -2232,6 +2250,7 @@ nb:
   validation_msg_relationship_already_established: "^Den relasjonen er allerede etablert."
   validation_msg_at_least_one_hub: "^Minst én hub må være valgt"
   validation_msg_product_category_cant_be_blank: "^Produktkategori kan ikke være blank"
+  validation_msg_tax: "^Avgiftskategori er påkrevd"
   validation_msg_tax_category_cant_be_blank: "^Avgiftskategori kan ikke være blank"
   validation_msg_is_associated_with_an_exising_customer: "er assosiert med en eksisterende kunde"
   content_configuration_pricing_table: "(TODO: Pristabell)"
@@ -2432,7 +2451,14 @@ nb:
           i din handlekurv gått ned. Her er hva som er endret.
       now_out_of_stock: er nå ikke på lager.
       only_n_remainging: "har nå kun %{num} igjen."
+    variants:
+      on_demand:
+        'yes': "Ved forespørsel"
     variant_overrides:
+      on_demand:
+        use_producer_settings: "Bruk produsentens lagerinnstillinger"
+        'yes': "Ja"
+        'no': "Nei"
       inventory_products: "Produkter i Varelager"
       hidden_products: "Skjulte Produkter"
       new_products: "Nye Produkter"
@@ -2535,6 +2561,12 @@ nb:
             other: "Du har %{count} aktive bestillingssykluser."
           manage_order_cycles: "BEHANDLE BESTILLINGSRUNDER"
       payment_methods:
+        new:
+          new_payment_method: "Ny Betalingsmetode"
+          back_to_payment_methods_list: "Tilbake til listen over betalingsmetoder"
+        edit:
+          editing_payment_method: "Redigerer betalingsmetode"
+          back_to_payment_methods_list: "Tilbake til listen over betalingsmetoder"
         stripe_connect:
           enterprise_select_placeholder: Velg...
           loading_account_information_msg: Laster inn kontoinformasjon fra Stripe, vennligst vent ...
@@ -2587,13 +2619,30 @@ nb:
           display_as: Vis som
       reports:
         table:
-          select_and_search: "Velg filtre og klikk på SØK for å få tilgang til dataene dine."
+          select_and_search: "Velg filtre og klikk på %{option} for å få tilgang til dine data."
         bulk_coop:
           bulk_coop_supplier_report: 'Bulk Co-op - Totaler etter Leverandør'
           bulk_coop_allocation: 'Bulk Co-op - Allokering'
           bulk_coop_packing_sheets: 'Bulk Co-op - Pakkseddel'
           bulk_coop_customer_payments: 'Bulk Co-op - Kunde Betalinger'
       users:
+        index:
+          listing_users: "Lister opp brukere"
+          new_user: "Ny Bruker"
+          user: "Bruker"
+          enterprise_limit: "Bedriftsgrense"
+          search: "Søk"
+          email: "Epost"
+        edit:
+          editing_user: "Redigerer Bruker"
+          back_to_users_list: "Tilbake til brukerlisten"
+          general_settings: "Generelle innstillinger"
+        form:
+          email: "Epost"
+          roles: "Roller"
+          enterprise_limit: "Bedriftsgrense"
+          confirm_password: "Bekreft Passord"
+          password: "Passord"
         email_confirmation:
           confirmation_pending: "Epostbekreftelse venter. Vi har sendt en bekreftelses-epost til %{address}."
       variants:

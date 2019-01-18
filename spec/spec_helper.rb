@@ -6,9 +6,13 @@ require 'rubygems'
 # Require pry when we're not inside Travis-CI
 require 'pry' unless ENV['CI']
 
-require 'knapsack'
-Knapsack.tracker.config({enable_time_offset_warning: false}) unless ENV['CI']
-Knapsack::Adapters::RSpecAdapter.bind
+# This spec_helper.rb is being used by the custom engines in engines/. The engines are not set up to
+# use Knapsack, and this provides the option to disable it when running the tests in CI services.
+unless ENV['DISABLE_KNAPSACK']
+  require 'knapsack'
+  Knapsack.tracker.config({enable_time_offset_warning: false}) unless ENV['CI']
+  Knapsack::Adapters::RSpecAdapter.bind
+end
 
 ENV["RAILS_ENV"] ||= 'test'
 require_relative "../config/environment"
@@ -35,16 +39,14 @@ require 'spree/testing_support/authorization_helpers'
 require 'spree/testing_support/preferences'
 
 # Capybara config
-require 'capybara/poltergeist'
-Capybara.javascript_driver = :poltergeist
+require 'selenium-webdriver'
+Capybara.javascript_driver = :chrome
 
-Capybara.register_driver :poltergeist do |app|
-  options = {phantomjs_options: ['--load-images=no', '--ssl-protocol=any'], window_size: [1280, 3600], timeout: 2.minutes}
-  # Extend poltergeist's timeout to allow ample time to use pry in browser thread
-  #options.merge! {timeout: 5.minutes}
-  # Enable the remote inspector: Use page.driver.debug to open a remote debugger in chrome
-  #options.merge! {inspector: true}
-  Capybara::Poltergeist::Driver.new(app, options)
+Capybara.register_driver :chrome do |app|
+  options = Selenium::WebDriver::Chrome::Options.new(
+    args: %w[headless disable-gpu no-sandbox window-size=1280,768]
+  )
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
 Capybara.default_max_wait_time = 30
@@ -91,13 +93,12 @@ RSpec.configure do |config|
   config.after(:each, js:true) do
     Capybara.reset_sessions!
     RackRequestBlocker.wait_for_requests_complete
-    DatabaseCleaner.clean
   end
 
   def restart_phantomjs
     Capybara.send('session_pool').values
-      .select { |s| s.driver.is_a?(Capybara::Poltergeist::Driver) }
-      .each { |s| s.driver.restart}
+      .select { |s| s.driver.is_a?(Capybara::Selenium::Driver) }
+      .each { |s| s.driver.reset! }
   end
 
   config.before(:all) { restart_phantomjs }

@@ -567,7 +567,6 @@ de_DE:
         tip: "Verwenden Sie diese Seite, um Produktmengen über mehrere Bestellungen hinweg zu ändern. Produkte können bei Bedarf auch komplett aus Bestellungen entfernt werden."
         shared: "Geteilte Ressource?"
         order_no: "Best.-Nr."
-        order_date: "Bestelldatum"
         max: "Max"
         product_unit: "Produkt: Einheit"
         weight_volume: "Gewicht / Volumen"
@@ -1140,11 +1139,11 @@ de_DE:
   ticket_column_unit_price: "Stückpreis"
   ticket_column_total_price: "Gesamtpreis"
   menu_1_title: "Läden"
-  menu_1_url: "/shops"
+  menu_1_url: "/ shops"
   menu_2_title: "Karte"
   menu_2_url: "/map"
   menu_3_title: "Erzeuger"
-  menu_3_url: "/producers"
+  menu_3_url: "/ producers"
   menu_4_title: "Gruppen"
   menu_4_url: "/groups"
   menu_5_title: "Über Uns"
@@ -1700,6 +1699,9 @@ de_DE:
   update_and_recalculate_fees: "Aktualisieren und Gebühren neu berechnen"
   registration:
     steps:
+      images:
+        back: "Zurück"
+        headline: "Dankeschön!"
       type:
         headline: "Letzter Schritt zum Hinzufügen von %{enterprise}!"
         question: "Sind Sie ein Produzent?"
@@ -1791,7 +1793,6 @@ de_DE:
   enterprise_long_desc: "Ausführliche Beschreibung"
   enterprise_long_desc_placeholder: "Dies ist Ihre Chance, die Geschichte Ihres Unternehmens zu erzählen - was macht Sie anders und wundervoll? Wir empfehlen, Ihre Beschreibung auf unter 600 Zeichen oder 150 Wörter zu beschränken."
   enterprise_long_desc_length: "%{num} Zeichen / bis zu 600 empfohlen"
-  enterprise_limit: Unternehmensgrenze
   enterprise_abn: "USt-IdNr."
   enterprise_abn_placeholder: "z.B. 99 123 456 789"
   enterprise_acn: "St.-Nr."
@@ -1835,8 +1836,6 @@ de_DE:
   registration_type_error: "Bitte wählen Sie: Sind Sie ein Produzent?"
   registration_type_producer_help: "Hersteller machen leckere Dinge zu essen und / oder zu trinken. Du bist ein Produzent, wenn du ihn anbaust, erziehst ihn, braue ihn, backe ihn, gähre ihn, melke ihn oder forme ihn."
   registration_type_no_producer_help: "Wenn Sie kein Produzent sind, sind Sie wahrscheinlich jemand, der Lebensmittel verkauft und verteilt. Sie könnten ein Hub, Coop, Einkaufsgruppe, Einzelhändler, Großhändler oder andere sein."
-  registration_images_headline: "Dankeschön!"
-  registration_images_description: "Lass uns ein paar schöne Bilder hochladen, damit dein Profil gut aussieht! :)"
   registration_detail_headline: "Lass uns anfangen"
   registration_detail_enterprise: "Woot! Zuerst müssen wir ein wenig über Ihr Unternehmen wissen:"
   registration_detail_producer: "Woot! Zuerst müssen wir ein wenig über Ihre Farm wissen:"
@@ -2433,7 +2432,13 @@ de_DE:
           in Ihrem Warenkorb verringert. Das Folgende hat sich geändert:
       now_out_of_stock: ist jetzt ausverkauft.
       only_n_remainging: "Jetzt hat nur noch %{num} übrig."
+    variants:
+      on_demand:
+        'yes': "Auf Anfrage"
     variant_overrides:
+      on_demand:
+        'yes': "Ja"
+        'no': "Nein"
       inventory_products: "Katalogprodukte"
       hidden_products: "Ausgeblendete Produkte"
       new_products: "Neue Produkte"
@@ -2594,6 +2599,14 @@ de_DE:
           bulk_coop_packing_sheets: 'Massenkoop - Verpackungsblätter'
           bulk_coop_customer_payments: 'Massenkoop - Kundenzahlungen'
       users:
+        index:
+          user: "Benutzer"
+          search: "Suche"
+          email: "E-Mail"
+        form:
+          email: "E-Mail"
+          roles: "Rollen"
+          password: "Passwort"
         email_confirmation:
           confirmation_pending: "E-Mail-Bestätigung steht aus. Wir haben eine Bestätigungs-E-Mail an %{address} gesendet."
       variants:

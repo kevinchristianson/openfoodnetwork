@@ -30,6 +30,7 @@ en:
         shipment_state: Shipment State
         completed_at: Completed At
         number: Number
+        state: State
         email: Customer E-Mail
       spree/payment:
         amount: Amount
@@ -47,6 +48,11 @@ en:
           attributes:
             orders_close_at:
               after_orders_open_at: must be after open date
+        variant_override:
+          count_on_hand:
+            using_producer_stock_settings_but_count_on_hand_set: "must be blank because using producer stock settings"
+            on_demand_but_count_on_hand_set: "must be blank if on demand"
+            limited_stock_but_no_count_on_hand: "must be specified because forcing limited stock"
   activemodel:
     errors:
       models:
@@ -209,7 +215,6 @@ en:
   distributors: Distributors
   distribution: Distribution
   order_cycles: Order Cycles
-  enterprise_limit: Enterprise Limit
   bulk_order_management: Bulk Order Management
   enterprises: Enterprises
   enterprise_groups: Groups
@@ -225,6 +230,7 @@ en:
   admin_and_handling: Admin & Handling
   profile: Profile
   supplier_only: Supplier Only
+  has_shopfront: Has Shopfront
   weight: Weight
   volume: Volume
   items: Items
@@ -251,6 +257,7 @@ en:
   password_confirmation: Password Confirmation
   reset_password_token: Reset password token
   expired: has expired, please request a new one
+  back_to_payments_list: "Back to Payments List"
 
   actions:
     create_and_add_another: "Create and Add Another"
@@ -524,6 +531,8 @@ en:
         inventory_no_permission: you do not have permission to create inventory for this producer
         none_saved: did not save any products successfully
         line_number: "Line %{number}:"
+        encoding_error: "Please check the language setting of your source file and ensure it is saved with UTF-8 encoding"
+        unexpected_error: "Product Import encountered an unexpected error whilst opening the file: %{error_message}"
       index:
         select_file: Select a spreadsheet to upload
         spreadsheet: Spreadsheet
@@ -629,7 +638,7 @@ en:
         tip: "Use this page to alter product quantities across multiple orders. Products may also be removed from orders entirely, if required."
         shared: "Shared Resource?"
         order_no: "Order No."
-        order_date: "Order Date"
+        order_date: "Completed at"
         max: "Max"
         product_unit: "Product: Unit"
         weight_volume: "Weight/Volume"
@@ -770,6 +779,9 @@ en:
           close_date: Close Date
         social:
           twitter_placeholder: eg. @the_prof
+          instagram_placeholder: eg. the_prof
+          facebook_placeholder: eg. www.facebook.com/PageNameHere
+          linkedin_placeholder: eg. www.linkedin.com/in/YourNameHere
         stripe_connect:
           connect_with_stripe: "Connect with Stripe"
           stripe_connect_intro: "To accept payments using credit card, you will need to connect your stripe account to the Open Food Network. Use the button to the right to get started."
@@ -1846,6 +1858,11 @@ See the %{link} to find out more about %{sitename}'s features and to start using
   update_and_recalculate_fees: "Update And Recalculate Fees"
   registration:
     steps:
+      images:
+        continue: "Continue"
+        back: "Back"
+        headline: "Thanks!"
+        description: "Let's upload some pretty pictures so your profile looks great! :)"
       type:
         headline: "Last step to add %{enterprise}!"
         question: "Are you a producer?"
@@ -1939,7 +1956,6 @@ See the %{link} to find out more about %{sitename}'s features and to start using
   enterprise_long_desc: "Long Description"
   enterprise_long_desc_placeholder: "This is your opportunity to tell the story of your enterprise - what makes you different and wonderful? We'd suggest keeping your description to under 600 characters or 150 words."
   enterprise_long_desc_length: "%{num} characters / up to 600 recommended"
-  enterprise_limit: Enterprise Limit
   enterprise_abn: "ABN"
   enterprise_abn_placeholder: "eg. 99 123 456 789"
   enterprise_acn: "ACN"
@@ -1986,9 +2002,6 @@ See the %{link} to find out more about %{sitename}'s features and to start using
   registration_type_producer_help: "Producers make yummy things to eat and/or drink. You're a producer if you grow it, raise it, brew it, bake it, ferment it, milk it or mould it."
   registration_type_no_producer_help: "If you’re not a producer, you’re probably someone who sells and distributes food. You might be a hub, coop, buying group, retailer, wholesaler or other."
   # END
-
-  registration_images_headline: "Thanks!"
-  registration_images_description: "Let's upload some pretty pictures so your profile looks great! :)"
 
 
   # TODO: Remove these once the enterprise.registration.modal keys are translated
@@ -2177,6 +2190,8 @@ See the %{link} to find out more about %{sitename}'s features and to start using
   order_cycles: "Order Cycles"
   enterprise_relationships: "Enterprise permissions"
   remove_tax: "Remove tax"
+  first_name_begins_with: "First name begins with"
+  last_name_begins_with: "Last name begins with"
 
   enterprise_tos_link: "Enterprise Terms of Service link"
   enterprise_tos_message: "We want to work with people that share our aims and values. As such we ask new enterprises to agree to our "
@@ -2395,6 +2410,7 @@ See the %{link} to find out more about %{sitename}'s features and to start using
   validation_msg_relationship_already_established: "^That relationship is already established."
   validation_msg_at_least_one_hub: "^At least one hub must be selected"
   validation_msg_product_category_cant_be_blank: "^Product Category cant be blank"
+  validation_msg_tax: "^Tax Category is required"
   validation_msg_tax_category_cant_be_blank: "^Tax Category can't be blank"
   validation_msg_is_associated_with_an_exising_customer: "is associated with an existing customer"
   content_configuration_pricing_table: "(TODO: Pricing table)"
@@ -2577,6 +2593,11 @@ See the %{link} to find out more about %{sitename}'s features and to start using
       orders:
         index:
           per_page: "%{results} per page"
+          view_file: View File
+          compiling_invoices: Compiling Invoices
+          bulk_invoice_created: Bulk Invoice created
+          bulk_invoice_failed: Failed to create Bulk Invoice
+          please_wait: Please wait until the PDF is ready before closing this modal.
       resend_user_email_confirmation:
         resend: "Resend"
         sending: "Resend..."
@@ -2589,7 +2610,14 @@ See the %{link} to find out more about %{sitename}'s features and to start using
         in your cart have reduced. Here's what's changed:
       now_out_of_stock: is now out of stock.
       only_n_remainging: "now only has %{num} remaining."
+    variants:
+      on_demand:
+        "yes": "On demand"
     variant_overrides:
+      on_demand:
+        use_producer_settings: "Use producer stock settings"
+        "yes": "Yes"
+        "no": "No"
       inventory_products: "Inventory Products"
       hidden_products: "Hidden Products"
       new_products: "New Products"
@@ -2675,6 +2703,7 @@ See the %{link} to find out more about %{sitename}'s features and to start using
           no_orders_found: "No Orders Found"
           results_found: "%{number} Results found."
           viewing: "Viewing %{start} to %{end}."
+          print_invoices: "Print Invoices"
         invoice:
           issued_on: Issued on
           tax_invoice: TAX INVOICE
@@ -2696,6 +2725,12 @@ See the %{link} to find out more about %{sitename}'s features and to start using
             other: "You have %{count} active order cycles."
           manage_order_cycles: "MANAGE ORDER CYCLES"
       payment_methods:
+        new:
+          new_payment_method: "New Payment Method"
+          back_to_payment_methods_list: "Back To Payment Methods List"
+        edit:
+          editing_payment_method: "Editing Payment Method"
+          back_to_payment_methods_list: "Back To Payment Methods List"
         stripe_connect:
           enterprise_select_placeholder: Choose...
           loading_account_information_msg: Loading account information from stripe, please wait...
@@ -2748,13 +2783,30 @@ See the %{link} to find out more about %{sitename}'s features and to start using
           display_as: Display As
       reports:
         table:
-          select_and_search: "Select filters and click on SEARCH to access your data."
+          select_and_search: "Select filters and click on %{option} to access your data."
         bulk_coop:
           bulk_coop_supplier_report: 'Bulk Co-op - Totals by Supplier'
           bulk_coop_allocation: 'Bulk Co-op - Allocation'
           bulk_coop_packing_sheets: 'Bulk Co-op - Packing Sheets'
           bulk_coop_customer_payments: 'Bulk Co-op - Customer Payments'
       users:
+        index:
+          listing_users: "Listing Users"
+          new_user: "New User"
+          user: "User"
+          enterprise_limit: "Enterprise Limit"
+          search: "Search"
+          email: "Email"
+        edit:
+          editing_user: "Editing User"
+          back_to_users_list: "Back To Users List"
+          general_settings: "General Settings"
+        form:
+          email: "Email"
+          roles: "Roles"
+          enterprise_limit: "Enterprise Limit"
+          confirm_password: "Confirm Password"
+          password: "Password"
         email_confirmation:
           confirmation_pending: "Email confirmation is pending. We've sent a confirmation email to %{address}."
       variants:

@@ -5,7 +5,7 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}.git" }
 gem 'rails', '~> 3.2.22'
 gem 'rails-i18n', '~> 3.0.0'
 gem 'i18n', '~> 0.6.11'
-gem 'i18n-js', '~> 3.0.0'
+gem 'i18n-js', '~> 3.1.0'
 
 # Patched version. See http://rubysec.com/advisories/CVE-2015-5312/.
 gem 'nokogiri', '>= 1.6.7.1'
@@ -13,7 +13,7 @@ gem 'nokogiri', '>= 1.6.7.1'
 gem 'web', path: './engines/web'
 
 gem 'pg'
-gem 'spree', github: 'openfoodfoundation/spree', branch: 'step-6a', ref: '69db1c090f3711088d84b524f1b94d25e6d21616'
+gem 'spree', github: 'openfoodfoundation/spree', branch: 'step-6a', ref: '41906362d931695e0616194341a68d2c4c85aaaf'
 gem 'spree_i18n', github: 'spree/spree_i18n', branch: '1-3-stable'
 gem 'spree_auth_devise', github: 'openfoodfoundation/spree_auth_devise', branch: 'spree-upgrade-intermediate'
 
@@ -27,7 +27,7 @@ gem 'stripe', '~> 3.3.2'
 # which is needed for Pin Payments (and possibly others).
 gem 'activemerchant', '~> 1.78'
 
-gem 'oauth2', '~> 1.2.0' # Used for Stripe Connect
+gem 'oauth2', '~> 1.4.1' # Used for Stripe Connect
 gem 'jwt', '~> 1.5'
 
 gem 'delayed_job_active_record'
@@ -63,15 +63,16 @@ gem 'spinjs-rails'
 gem 'rack-ssl', require: 'rack/ssl'
 gem 'rack-rewrite'
 gem 'custom_error_message', github: 'jeremydurham/custom-err-msg'
-gem 'angularjs-file-upload-rails', '~> 1.1.6'
-gem 'roadie-rails', '~> 1.0.3'
+gem 'angularjs-file-upload-rails', '~> 2.4.1'
+gem 'roadie-rails', '~> 1.1.1'
 gem 'figaro'
 gem 'blockenspiel'
 gem 'acts-as-taggable-on', '~> 3.4'
-gem 'paper_trail', '~> 3.0.8'
+gem 'paper_trail', '~> 5.2.3'
 gem 'diffy'
 gem 'skylight', '< 2.0'
 
+gem 'combine_pdf'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
@@ -88,10 +89,7 @@ group :assets do
   gem 'compass-rails'
   gem 'coffee-rails', '~> 3.2.1'
 
-  gem 'mini_racer'
-  # We found that the following version of libv8 breaks the compilation of mini_racer.
-  # Nothing else depends on libv8.
-  gem 'libv8', '!= 6.7.288.46.1'
+  gem 'therubyracer', '=0.12.0'
 
   gem 'uglifier', '>= 1.0.3'
 
@@ -120,7 +118,8 @@ group :test, :development do
   gem 'awesome_print'
   gem 'letter_opener', '>= 1.4.1'
   gem 'timecop'
-  gem 'poltergeist', '>= 1.16.0'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
   gem 'rspec-retry'
   gem 'json_spec', '~> 1.1.4'
   gem 'unicorn-rails'
@@ -145,9 +144,13 @@ group :development do
   gem 'guard-rails'
   gem 'guard-rspec', '~> 4.7.3'
   gem 'rubocop', '>= 0.49.1'
+  gem 'spring', '1.7.2'
+  gem 'spring-commands-rspec'
 
   # 1.0.9 fixed openssl issues on macOS https://github.com/eventmachine/eventmachine/issues/602
   # While we don't require this gem directly, no dependents forced the upgrade to a version
   # greater than 1.0.9, so we just required the latest available version here.
   gem 'eventmachine', '>= 1.2.3'
+
+  gem 'rack-mini-profiler', '< 1.0.0'
 end

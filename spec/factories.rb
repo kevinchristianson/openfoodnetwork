@@ -189,9 +189,20 @@ FactoryBot.define do
 
   factory :variant_override, :class => VariantOverride do
     price         77.77
+    on_demand false
     count_on_hand 11111
     default_stock 2000
     resettable  false
+
+    trait :on_demand do
+      on_demand true
+      count_on_hand nil
+    end
+
+    trait :use_producer_stock_settings do
+      on_demand nil
+      count_on_hand nil
+    end
   end
 
   factory :inventory_item, :class => InventoryItem do
@@ -296,7 +307,7 @@ FactoryBot.define do
   end
 
   factory :order_with_taxes, parent: :completed_order_with_totals do
-    ignore do
+    transient do
       product_price 0
       tax_rate_amount 0
       tax_rate_name ""
