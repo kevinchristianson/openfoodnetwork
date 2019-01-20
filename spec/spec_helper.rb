@@ -125,27 +125,6 @@ RSpec.configure do |config|
     Spree::Api::Config[:requires_authentication] = true
   end
 
-  # Helpers
-  config.include Rails.application.routes.url_helpers
-  config.include Spree::UrlHelpers
-  config.include Spree::CheckoutHelpers
-  config.include Spree::MoneyHelper
-  config.include Spree::TestingSupport::ControllerRequests, :type => :controller
-  config.include Spree::TestingSupport::Preferences
-  config.include Devise::TestHelpers, :type => :controller
-  config.extend  Spree::Api::TestingSupport::Setup, :type => :controller
-  config.include Spree::Api::TestingSupport::Helpers, :type => :controller
-  config.include OpenFoodNetwork::ControllerHelper, :type => :controller
-  config.include OpenFoodNetwork::FeatureToggleHelper
-  config.include OpenFoodNetwork::FiltersHelper
-  config.include OpenFoodNetwork::EnterpriseGroupsHelper
-  config.include OpenFoodNetwork::ProductsHelper
-  config.include OpenFoodNetwork::DistributionHelper
-  config.include OpenFoodNetwork::HtmlHelper
-  config.include ActionView::Helpers::DateHelper
-  config.include OpenFoodNetwork::DelayedJobHelper
-  config.include OpenFoodNetwork::PerformanceHelper
-
   # FactoryBot
   require 'factory_bot_rails'
   config.include FactoryBot::Syntax::Methods
