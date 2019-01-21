@@ -1,51 +1,80 @@
-# spec/integration/blogs_spec.rb
 require 'swagger_helper'
 
-describe 'Blogs API' do
+describe 'Blogs API', type: :request, swagger_doc: 'v1/swagger.json' do
+  let(:api_key) { 'fake_key' }
 
   path '/blogs' do
-
     post 'Creates a blog' do
       tags 'Blogs'
-      consumes 'application/json', 'application/xml'
-      parameter name: :blog, in: :body, schema: {
-        type: :object,
-        properties: {
-          title: { type: :string },
-          content: { type: :string }
-        },
-        required: [ 'title', 'content' ]
-      }
+      description 'Creates a new blog from provided data'
+      operationId 'createBlog'
+      consumes 'application/json'
+      produces 'application/json'
+      parameter name: :blog, in: :body, schema: { '$ref' => '#/definitions/blog' }
+
+      let(:blog) { { title: 'foo', content: 'bar' } }
 
       response '201', 'blog created' do
-        let(:blog) { { title: 'foo', content: 'bar' } }
         run_test!
       end
 
       response '422', 'invalid request' do
+        schema '$ref' => '#/definitions/errors_object'
+
         let(:blog) { { title: 'foo' } }
+        run_test! do |response|
+          expect(response.body).to include("can't be blank")
+        end
+      end
+    end
+
+    get 'Searches blogs' do
+      tags 'Blogs'
+      description 'Searches blogs by keywords'
+      operationId 'searchBlogs'
+      produces 'application/json'
+      parameter name: :keywords, in: :query, type: 'string'
+
+      let(:keywords) { 'foo bar' }
+
+      response '200', 'success' do
+        schema type: 'array', items: { '$ref' => '#/definitions/blog' }
+      end
+
+      response '406', 'unsupported accept header' do
+        let(:'Accept') { 'application/foo' }
         run_test!
       end
     end
   end
 
   path '/blogs/{id}' do
+    parameter name: :id, in: :path, type: :string
+
+    let(:id) { blog.id }
+    let(:blog) { Blog.create(title: 'foo', content: 'bar', thumbnail: 'thumbnail.png') }
 
     get 'Retrieves a blog' do
       tags 'Blogs'
-      produces 'application/json', 'application/xml'
-      parameter name: :id, :in => :path, :type => :string
+      description 'Retrieves a specific blog by id'
+      operationId 'getBlog'
+      produces 'application/json'
 
       response '200', 'blog found' do
-        schema type: :object,
-          properties: {
-            id: { type: :integer },
-            title: { type: :string },
-            content: { type: :string }
-          },
-          required: [ 'id', 'title', 'content' ]
+        header 'ETag', type: :string
+        header 'Last-Modified', type: :string
+        header 'Cache-Control', type: :string
 
-        let(:id) { Blog.create(title: 'foo', content: 'bar').id }
+        schema '$ref' => '#/definitions/blog'
+
+        examples 'application/json' => {
+            id: 1,
+            title: 'Hello world!',
+            content: 'Hello world and hello universe. Thank you all very much!!!',
+            thumbnail: "thumbnail.png"
+          }
+
+        let(:id) { blog.id }
         run_test!
       end
 
@@ -53,9 +82,24 @@ describe 'Blogs API' do
         let(:id) { 'invalid' }
         run_test!
       end
+    end
+  end
 
-      response '406', 'unsupported accept header' do
-        let(:'Accept') { 'application/foo' }
+  path '/blogs/{id}/upload' do
+    parameter name: :id, in: :path, type: :string
+
+    let(:id) { blog.id }
+    let(:blog) { Blog.create(title: 'foo', content: 'bar') }
+
+    put 'Uploads a blog thumbnail' do
+      tags 'Blogs'
+      description 'Upload a thumbnail for specific blog by id'
+      operationId 'uploadThumbnailBlog'
+      consumes 'multipart/form-data'
+      parameter name: :file, :in => :formData, :type => :file, required: true
+
+      response '200', 'blog updated' do
+        let(:file) { Rack::Test::UploadedFile.new(Rails.root.join("spec/fixtures/thumbnail.png")) }
         run_test!
       end
     end
