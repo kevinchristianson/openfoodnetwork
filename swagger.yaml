@@ -21,10 +21,23 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Product'
+    post:
+      description: Posts a new product
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+    
+    
       
   /api/products/{product_id}:
     get:
-      summary: Get a product by ID
+      description: Get a product by ID
       parameters:
         - in: path
           name: product_id
@@ -32,11 +45,27 @@ paths:
             type: integer
           required: true
           description: Numeric ID of the product
-      description: Gets all products
       responses:
         '200':
           description: successful operation
-          
+    put:
+      description: Replaces the product at the given ID
+      parameters:
+          - in: path
+            name: product_id
+            schema:
+              type: integer
+            required: true
+            description: Numeric ID of the product
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'      
 components:
   securitySchemes:
     api_key:
