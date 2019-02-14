@@ -169,3 +169,31 @@ components:
           type: integer
         name: 
           type: string
+    Taxon:
+      type: object
+      properties:
+        id: 
+          type: integer
+        name: 
+          type: string
+        pretty_name: 
+          type: string
+        permalink:
+          type: string
+        position:
+          type: integer
+        parent_id:
+          type: integer
+        taxonomy_id:
+          type: integer
+    State:
+      type: object
+      properties:
+        name:
+          type: string
+        abbr:
+          type: string
+        id:
+          type: integer
+        country_id:
+          type: integer
