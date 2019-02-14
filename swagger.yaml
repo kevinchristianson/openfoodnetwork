@@ -1,14 +1,14 @@
 openapi: 3.0.1
 info:
-  title: OFN API
-  description: defaultDescription
+  title: The Open Food Network
+  description: https://github.com/openfoodfoundation/openfoodnetwork
   version: '0.1'
 servers:
   - url: 'http://staging.katuma.org'
 paths:
   /api/products:
     get:
-      description: Get all products
+      description: Get all products <3
       responses:
         '200':
           description: successful operation
