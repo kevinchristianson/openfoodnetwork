@@ -160,7 +160,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Variant'
                   
-  /products/{product_id}/variants/{id}:
+  /products/{product_id}/variants/{variant_id}:
     get:
       description: Get a product by ID
       parameters:
@@ -171,7 +171,7 @@ paths:
           required: true
           description: Numeric ID of the product
         - in: path
-          name: id
+          name: variant_id
           schema:
             type: integer
           required: true
@@ -195,7 +195,7 @@ paths:
             required: true
             description: Numeric ID of the product
           - in: path
-            name: id
+            name: variant_id
             schema:
               type: integer
             required: true
@@ -219,7 +219,7 @@ paths:
             required: true
             description: Numeric ID of the product
           - in: path
-            name: id
+            name: variant_id
             schema:
               type: integer
             required: true
