@@ -11,10 +11,16 @@ servers:
 paths:
   /api/products:
     get:
-      description: Get all products <3
+      description: Get all products
       responses:
         '200':
           description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
       
   /api/products/{product_id}:
     get:
