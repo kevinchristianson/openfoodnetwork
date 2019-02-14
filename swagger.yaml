@@ -46,8 +46,14 @@ paths:
       responses:
         '200':
           description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
     put:
-      description: Replaces the product at the given ID
+      description: Puts a product at the given ID
       parameters:
           - in: path
             name: product_id
@@ -81,7 +87,119 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Product'     
+                  $ref: '#/components/schemas/Product'
+                  
+  /products/{product_id}/variants:
+    get:
+      description: Get all variants of the given product
+      parameters:
+        - in: path
+          name: product_id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the product
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Variant'
+    post:
+      description: Posts a new product variant
+      parameters:
+        - in: path
+          name: product_id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the product
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Variant'
+                  
+  /products/{product_id}/variants/{id}:
+    get:
+      description: Get a product by ID
+      parameters:
+        - in: path
+          name: product_id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the product
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the variant
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Variant'
+    put:
+      description: Puts a variant at the given ID
+      parameters:
+          - in: path
+            name: product_id
+            schema:
+              type: integer
+            required: true
+            description: Numeric ID of the product
+          - in: path
+            name: id
+            schema:
+              type: integer
+            required: true
+            description: Numeric ID of the variant
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Variant'
+    delete:
+      description: Deletes the variant at the given ID
+      parameters:
+          - in: path
+            name: product_id
+            schema:
+              type: integer
+            required: true
+            description: Numeric ID of the product
+          - in: path
+            name: id
+            schema:
+              type: integer
+            required: true
+            description: Numeric ID of the variant
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Variant'
 components:
   securitySchemes:
     api_key:
