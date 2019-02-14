@@ -76,6 +76,8 @@ components:
     Product:
       type: object
       properties:
+        description:
+          type: string
         id:
           type: integer
           format: int64
