@@ -149,3 +149,23 @@ components:
           type: object
         images: 
           type: object
+    Zone:
+      type: object
+      properties:
+        id: 
+          type: integer
+        description: 
+          type: string
+        zone_members: 
+          type: object
+        name: 
+          type: string
+    Taxonomy:
+      type: object
+      properties:
+        root: 
+          type: object
+        id: 
+          type: integer
+        name: 
+          type: string
