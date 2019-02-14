@@ -1,7 +1,9 @@
 openapi: 3.0.1
 info:
   title: The Open Food Network
-  description: https://github.com/openfoodfoundation/openfoodnetwork
+  description: Before testing, log into staging.katuma.org with the email 
+    spree@example.com and password spree123.
+    https://github.com/openfoodfoundation/openfoodnetwork
   version: '0.1'
 servers:
   - url: 'http://staging.katuma.org'
