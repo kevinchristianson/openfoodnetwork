@@ -6,10 +6,10 @@ info:
     https://github.com/openfoodfoundation/openfoodnetwork
   version: '0.1'
 servers:
-  - url: 'http://staging.katuma.org'
+  - url: 'https://staging.katuma.org/api/'
   - url: 'https://staging.katuma.org/api/'
 paths:
-  /api/products:
+  /products:
     get:
       description: Get all products
       responses:
@@ -33,7 +33,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Product'
       
-  /api/products/{product_id}:
+  /products/{product_id}:
     get:
       description: Get a product by ID
       parameters:
@@ -92,17 +92,60 @@ components:
     Product:
       type: object
       properties:
-        description:
-          type: string
-        id:
+        id: 
           type: integer
-          format: int64
-        name:
+        name: 
           type: string
-        presentation:
+        description: 
           type: string
-        option_type_name:
+        price: 
           type: string
-        option_type_id:
+        available_on: 
+          type: string
+        permalink: 
+          type: string
+        count_on_hand: 
           type: integer
-          format: int64
+        meta_description: 
+          type: string
+        meta_keywords: 
+          type: string
+        taxon_ids: 
+          type: object
+        variants: 
+          type: object
+        option_types: 
+          type: object
+        product_properties: 
+          type: object
+    Variant:
+      type: object
+      properties:
+        id: 
+          type: integer
+        name: 
+          type: string
+        count_on_hand: 
+          type: integer
+        sku: 
+          type: string
+        price: 
+          type: string
+        weight: 
+          type: string
+        height: 
+          type: string
+        width: 
+          type: string
+        depth: 
+          type: string
+        is_master: 
+          type: string
+        cost_price: 
+          type: string
+        permalink: 
+          type: string
+        option_values: 
+          type: object
+        images: 
+          type: object
