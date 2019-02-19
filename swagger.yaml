@@ -1,0 +1,503 @@
+openapi: 3.0.1
+info:
+  title: The Open Food Network
+  description: Before testing, log into staging.katuma.org with the email spree@example.com and password spree123 (hit the lock icon in the top-right corner, fill the two fields, and hit the red button). Check out our repo at https://github.com/openfoodfoundation/openfoodnetwork
+  version: '0.1'
+servers:
+  - url: 'https://staging.katuma.org/api/'
+tags:
+  - name: products
+    description: product stuff
+  - name: product variants
+    description: product variant stuff
+  - name: zones
+    description: zone stuff
+  - name: states
+    description: state stuff
+  
+paths:
+  /products:
+    get:
+      description: Get all products
+      tags:
+        - products
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+    post:
+      description: Posts a new product
+      tags:
+        - products
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+                  
+  /products/new:
+    get:
+      description: Get an empty Product object
+      tags:
+        - products
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+      
+  /products/{product_id}:
+    get:
+      description: Get a product by ID
+      tags:
+        - products
+      parameters:
+        - in: path
+          name: product_id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the product
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+    put:
+      description: Puts a product at the given ID
+      tags:
+        - products
+      parameters:
+          - in: path
+            name: product_id
+            schema:
+              type: integer
+            required: true
+            description: Numeric ID of the product
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+    delete:
+      description: Deletes the product at the given ID
+      tags:
+        - products
+      parameters:
+          - in: path
+            name: product_id
+            schema:
+              type: integer
+            required: true
+            description: Numeric ID of the product
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+                  
+  /products/{product_id}/variants:
+    get:
+      description: Get all variants of the given product
+      tags:
+        - product variants
+      parameters:
+        - in: path
+          name: product_id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the product
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Variant'
+    post:
+      description: Posts a new product variant
+      tags:
+        - product variants
+      parameters:
+        - in: path
+          name: product_id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the product
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Variant'
+                  
+  /products/{product_id}/variants/new:
+    get:
+      description: Get an empty Variant object
+      tags:
+        - product variants
+      parameters:
+        - in: path
+          name: product_id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the product
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Variant'
+                  
+  /products/{product_id}/variants/{variant_id}:
+    get:
+      description: Get a product by ID
+      tags:
+        - product variants
+      parameters:
+        - in: path
+          name: product_id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the product
+        - in: path
+          name: variant_id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the variant
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Variant'
+    put:
+      description: Puts a variant at the given ID
+      tags:
+        - product variants
+      parameters:
+          - in: path
+            name: product_id
+            schema:
+              type: integer
+            required: true
+            description: Numeric ID of the product
+          - in: path
+            name: variant_id
+            schema:
+              type: integer
+            required: true
+            description: Numeric ID of the variant
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Variant'
+    delete:
+      description: Deletes the variant at the given ID
+      tags:
+        - product variants
+      parameters:
+          - in: path
+            name: product_id
+            schema:
+              type: integer
+            required: true
+            description: Numeric ID of the product
+          - in: path
+            name: variant_id
+            schema:
+              type: integer
+            required: true
+            description: Numeric ID of the variant
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Variant'
+                  
+  /zones:
+    get:
+      description: Get all zones
+      tags:
+        - zones
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Zone'
+    post:
+      description: Posts a new zone
+      tags:
+        - zones
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Zone'
+                  
+  /zones/new:
+    get:
+      description: Get an empty zone object
+      tags:
+        - zones
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Zone'
+      
+  /zones/{zone_id}:
+    get:
+      description: Get a zone by ID
+      tags:
+        - zones
+      parameters:
+        - in: path
+          name: zone_id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the zone
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Zone'
+    put:
+      description: Puts a zone at the given ID
+      tags:
+        - zones
+      parameters:
+          - in: path
+            name: zone_id
+            schema:
+              type: integer
+            required: true
+            description: Numeric ID of the zone
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Zone'
+    delete:
+      description: Deletes the zone at the given ID
+      tags:
+        - zones
+      parameters:
+          - in: path
+            name: zone_id
+            schema:
+              type: integer
+            required: true
+            description: Numeric ID of the zone
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Zone'
+                  
+  /states:
+    get:
+      description: Get all states
+      tags:
+        - states
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/State'
+                  
+  /states/{state_id}:
+    get:
+      description: Get a state with the given ID
+      tags:
+        - states
+      parameters:
+        - in: path
+          name: state_id
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the state
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/State'
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
+  schemas:
+    Product:
+      type: object
+      properties:
+        id: 
+          type: integer
+        name: 
+          type: string
+        description: 
+          type: string
+        price: 
+          type: string
+        available_on: 
+          type: string
+        permalink: 
+          type: string
+        count_on_hand: 
+          type: integer
+        meta_description: 
+          type: string
+        meta_keywords: 
+          type: string
+        taxon_ids: 
+          type: object
+        variants: 
+          type: object
+        option_types: 
+          type: object
+        product_properties: 
+          type: object
+    Variant:
+      type: object
+      properties:
+        id: 
+          type: integer
+        name: 
+          type: string
+        count_on_hand: 
+          type: integer
+        sku: 
+          type: string
+        price: 
+          type: string
+        weight: 
+          type: string
+        height: 
+          type: string
+        width: 
+          type: string
+        depth: 
+          type: string
+        is_master: 
+          type: string
+        cost_price: 
+          type: string
+        permalink: 
+          type: string
+        option_values: 
+          type: object
+        images: 
+          type: object
+    Zone:
+      type: object
+      properties:
+        id: 
+          type: integer
+        description: 
+          type: string
+        zone_members: 
+          type: object
+        name: 
+          type: string
+    Taxonomy:
+      type: object
+      properties:
+        root: 
+          type: object
+        id: 
+          type: integer
+        name: 
+          type: string
+    Taxon:
+      type: object
+      properties:
+        id: 
+          type: integer
+        name: 
+          type: string
+        pretty_name: 
+          type: string
+        permalink:
+          type: string
+        position:
+          type: integer
+        parent_id:
+          type: integer
+        taxonomy_id:
+          type: integer
+    State:
+      type: object
+      properties:
+        name:
+          type: string
+        abbr:
+          type: string
+        id:
+          type: integer
+        country_id:
+          type: integer
