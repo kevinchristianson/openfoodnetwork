@@ -33,6 +33,8 @@ paths:
                     type: integer
                   total_count:
                     type: integer
+                  current_page:
+                    type: integer
                   product:
                     $ref: '#/components/schemas/Product'
     post:
