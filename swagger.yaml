@@ -62,9 +62,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/New'
+                $ref: '#/components/schemas/New'
       
   /products/{product_id}:
     get:
@@ -182,9 +180,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/New'
+                $ref: '#/components/schemas/New'
                   
   /products/{product_id}/variants/{variant_id}:
     get:
