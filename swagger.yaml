@@ -18,7 +18,7 @@ tags:
 paths:
   /products:
     get:
-      description: Get all products
+      description: Gets all Products.
       tags:
         - products
       responses:
@@ -38,7 +38,7 @@ paths:
                   product:
                     $ref: '#/components/schemas/Product'
     post:
-      description: Posts a new product
+      description: Posts a new Product.
       tags:
         - products
       responses:
@@ -53,7 +53,7 @@ paths:
                   
   /products/new:
     get:
-      description: Get an empty Product object
+      description: Gets an object consisting of an array of all Product attributes and an array of required attributes to create a new Product object.
       tags:
         - products
       responses:
@@ -64,11 +64,11 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Product'
+                  $ref: '#/components/schemas/New'
       
   /products/{product_id}:
     get:
-      description: Get a product by ID
+      description: Gets a Product by ID.
       tags:
         - products
       parameters:
@@ -77,7 +77,7 @@ paths:
           schema:
             type: integer
           required: true
-          description: Numeric ID of the product
+          description: Numeric ID of the Product.
       responses:
         '200':
           description: successful operation
@@ -86,7 +86,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Product'
     put:
-      description: Puts a product at the given ID
+      description: Puts a Product at the given ID.
       tags:
         - products
       parameters:
@@ -95,7 +95,7 @@ paths:
             schema:
               type: integer
             required: true
-            description: Numeric ID of the product
+            description: Numeric ID of the Product.
       responses:
         '200':
           description: successful operation
@@ -104,7 +104,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Product'
     delete:
-      description: Deletes the product at the given ID
+      description: Deletes the Product at the given ID.
       tags:
         - products
       parameters:
@@ -113,7 +113,7 @@ paths:
             schema:
               type: integer
             required: true
-            description: Numeric ID of the product
+            description: Numeric ID of the Product.
       responses:
         '200':
           description: successful operation
@@ -124,7 +124,7 @@ paths:
                   
   /products/{product_id}/variants:
     get:
-      description: Get all variants of the given product
+      description: Gets all Variants of the given Product.
       tags:
         - product variants
       parameters:
@@ -133,7 +133,7 @@ paths:
           schema:
             type: integer
           required: true
-          description: Numeric ID of the product
+          description: Numeric ID of the Product.
       responses:
         '200':
           description: successful operation
@@ -144,7 +144,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Variant'
     post:
-      description: Posts a new product variant
+      description: Posts a new Product Variant.
       tags:
         - product variants
       parameters:
@@ -153,7 +153,7 @@ paths:
           schema:
             type: integer
           required: true
-          description: Numeric ID of the product
+          description: Numeric ID of the Product.
       responses:
         '200':
           description: successful operation
@@ -166,7 +166,7 @@ paths:
                   
   /products/{product_id}/variants/new:
     get:
-      description: Get an empty Variant object
+      description: Gets an object consisting of an array of all Variant attributes and an array of required attributes to create a new Variant object.
       tags:
         - product variants
       parameters:
@@ -175,7 +175,7 @@ paths:
           schema:
             type: integer
           required: true
-          description: Numeric ID of the product
+          description: Numeric ID of the Product.
       responses:
         '200':
           description: successful operation
@@ -184,11 +184,11 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Variant'
+                  $ref: '#/components/schemas/New'
                   
   /products/{product_id}/variants/{variant_id}:
     get:
-      description: Get a product by ID
+      description: Gets a Variant by ID.
       tags:
         - product variants
       parameters:
@@ -197,13 +197,13 @@ paths:
           schema:
             type: integer
           required: true
-          description: Numeric ID of the product
+          description: Numeric ID of the Product.
         - in: path
           name: variant_id
           schema:
             type: integer
           required: true
-          description: Numeric ID of the variant
+          description: Numeric ID of the Variant.
       responses:
         '200':
           description: successful operation
@@ -212,7 +212,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Variant'
     put:
-      description: Puts a variant at the given ID
+      description: Puts a Variant at the given ID.
       tags:
         - product variants
       parameters:
@@ -221,13 +221,13 @@ paths:
             schema:
               type: integer
             required: true
-            description: Numeric ID of the product
+            description: Numeric ID of the Product.
           - in: path
             name: variant_id
             schema:
               type: integer
             required: true
-            description: Numeric ID of the variant
+            description: Numeric ID of the Variant.
       responses:
         '200':
           description: successful operation
@@ -236,7 +236,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Variant'
     delete:
-      description: Deletes the variant at the given ID
+      description: Deletes the Variant at the given ID.
       tags:
         - product variants
       parameters:
@@ -245,13 +245,13 @@ paths:
             schema:
               type: integer
             required: true
-            description: Numeric ID of the product
+            description: Numeric ID of the Product.
           - in: path
             name: variant_id
             schema:
               type: integer
             required: true
-            description: Numeric ID of the variant
+            description: Numeric ID of the Variant.
       responses:
         '200':
           description: successful operation
@@ -262,7 +262,7 @@ paths:
                   
   /zones:
     get:
-      description: Get all zones
+      description: Gets all Zones.
       tags:
         - zones
       responses:
@@ -275,7 +275,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/Zone'
     post:
-      description: Posts a new zone
+      description: Posts a new Zone.
       tags:
         - zones
       responses:
@@ -290,7 +290,7 @@ paths:
                   
   /zones/new:
     get:
-      description: Get an empty zone object
+      description: Gets an object consisting of an array of all Zone attributes and an array of required attributes to create a new Zone object.
       tags:
         - zones
       responses:
@@ -299,13 +299,11 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Zone'
+                $ref: '#/components/schemas/New'
       
   /zones/{zone_id}:
     get:
-      description: Get a zone by ID
+      description: Gets a Zone by ID.
       tags:
         - zones
       parameters:
@@ -314,7 +312,7 @@ paths:
           schema:
             type: integer
           required: true
-          description: Numeric ID of the zone
+          description: Numeric ID of the Zone.
       responses:
         '200':
           description: successful operation
@@ -323,7 +321,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Zone'
     put:
-      description: Puts a zone at the given ID
+      description: Puts a Zone at the given ID.
       tags:
         - zones
       parameters:
@@ -332,7 +330,7 @@ paths:
             schema:
               type: integer
             required: true
-            description: Numeric ID of the zone
+            description: Numeric ID of the Zone.
       responses:
         '200':
           description: successful operation
@@ -341,7 +339,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Zone'
     delete:
-      description: Deletes the zone at the given ID
+      description: Deletes the Zone at the given ID.
       tags:
         - zones
       parameters:
@@ -350,7 +348,7 @@ paths:
             schema:
               type: integer
             required: true
-            description: Numeric ID of the zone
+            description: Numeric ID of the Zone.
       responses:
         '200':
           description: successful operation
@@ -361,7 +359,7 @@ paths:
                   
   /states:
     get:
-      description: Get all states
+      description: Gets all States.
       tags:
         - states
       responses:
@@ -376,7 +374,7 @@ paths:
                   
   /states/{state_id}:
     get:
-      description: Get a state with the given ID
+      description: Get a State with the given ID.
       tags:
         - states
       parameters:
@@ -385,7 +383,7 @@ paths:
           schema:
             type: integer
           required: true
-          description: Numeric ID of the state
+          description: Numeric ID of the State.
       responses:
         '200':
           description: successful operation
@@ -429,6 +427,18 @@ components:
           type: object
         product_properties: 
           type: object
+    New:
+      type: object
+      properties:
+        required_attributes:
+          type: array
+          items:
+            type: string
+        attributes:
+          type: array
+          items:
+            type: string
+      
     Variant:
       type: object
       properties:
