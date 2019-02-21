@@ -831,3 +831,16 @@ components:
           type: integer
         country_id:
           type: integer
+    Country:
+      type: object
+      properties:
+        count:
+          type: integer
+        current_page:
+          type: integer
+        pages:
+          type: string
+        countries:
+          type: array
+          items:
+            type: string
