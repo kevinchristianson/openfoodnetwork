@@ -43,6 +43,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Product'
+                  current_page:
+                    type: integer
     post:
       description: Posts a new Product.
       tags:
@@ -53,9 +55,20 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Product'
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  total_count:
+                    type: integer
+                  pages:
+                    type: integer
+                  products:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+                  current_page:
+                    type: integer
                   
   /products/new:
     get:
@@ -154,6 +167,10 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Variant'
+                  pages:
+                    type: integer
+                  current_page:
+                    type: integer
     post:
       description: Posts a new Product Variant.
       tags:
@@ -171,9 +188,20 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Variant'
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  total_count:
+                    type: integer
+                  variants:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Variant'
+                  pages:
+                    type: integer
+                  current_page:
+                    type: integer
                   
   /products/{product_id}/variants/new:
     get:
@@ -302,9 +330,18 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Zone'
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  current_page:
+                    type: integer
+                  pages:
+                    type: integer
+                  zones:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Zone'
                   
   /zones/new:
     get:
@@ -434,6 +471,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Taxonomy'
+                  pages:
+                    type: integer
     post:
       description: Posts a new Taxonomy.
       tags:
@@ -775,23 +814,23 @@ components:
     Taxon:
       type: object
       properties:
+        name: 
+          type: string
+        taxonomy_id:
+          type: integer
+        position:
+          type: integer
+        permalink:
+          type: string
         taxons:
           type: array
           items:
             $ref: '#/components/schemas/Taxon'
-        id: 
-          type: integer
-        name: 
-          type: string
         pretty_name: 
           type: string
-        permalink:
-          type: string
-        position:
-          type: integer
+        id: 
+          type: integer  
         parent_id:
-          type: integer
-        taxonomy_id:
           type: integer
     State:
       type: object
