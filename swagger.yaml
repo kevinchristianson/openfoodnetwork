@@ -342,20 +342,6 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Zone'
-                  
-  /zones/new:
-    get:
-      description: Gets an object consisting of an array of all Zone attributes and an array of required attributes to create a new Zone object.
-      tags:
-        - zones
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/New'
-      
   /zones/{zone_id}:
     get:
       description: Gets a Zone by ID.
