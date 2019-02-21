@@ -785,7 +785,9 @@ components:
         description: 
           type: string
         zone_members: 
-          type: object
+          type: array
+          items:
+            type: object
         name: 
           type: string
     Taxonomy:
