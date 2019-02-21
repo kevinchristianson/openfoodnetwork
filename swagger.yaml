@@ -844,3 +844,8 @@ components:
           type: array
           items:
             type: string
+    Cookies_consent:
+      type: object
+      properties:
+        cookies_consent:
+          type: boolean
