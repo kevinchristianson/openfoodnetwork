@@ -18,6 +18,8 @@ tags:
     description: taxonomy stuff
   - name: taxons
     description: taxon stuff
+  - name: countries
+    description: country stuff
   
 paths:
   /products:
@@ -697,7 +699,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/Taxon'
                 
-  
+  /countries:
+    get:
+      description: Gets all Countries.
+      tags:
+        - countries
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: string
+                  current_page:
+                    type: integer
+                  countries:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Country'
+                  pages:
+                    type: integer
+            
 components:
   securitySchemes:
     api_key:
