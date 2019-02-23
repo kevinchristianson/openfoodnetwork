@@ -1,25 +1,25 @@
 openapi: 3.0.1
 info:
   title: The Open Food Network
-  description: Before testing, log into staging.katuma.org with the email spree@example.com and password spree123 (hit the lock icon in the top-right corner, fill the two fields, and hit the red button). Check out our repo at https://github.com/openfoodfoundation/openfoodnetwork
+  description: Before testing, log into staging.katuma.org with the email spree@example.com and password spree123 (hit the lock icon in the top-right corner, fill the two fields, and hit the red button). Check out our repo! https://github.com/openfoodfoundation/openfoodnetwork
   version: '0.1'
 servers:
   - url: 'https://staging.katuma.org/api/'
 tags:
   - name: products
-    description: product stuff
+    description: Product endpoints
   - name: product variants
-    description: product variant stuff
+    description: Product variant endpoints
   - name: zones
-    description: zone stuff
+    description: Zone endpoints
   - name: states
-    description: state stuff
+    description: State endpoints
   - name: taxonomies
-    description: taxonomy stuff
+    description: Taxonomy endpoints
   - name: taxons
-    description: taxon stuff
+    description: Taxon endpoints
   - name: countries
-    description: country stuff
+    description: Country endpoints
   
 paths:
   /products:
