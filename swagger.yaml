@@ -892,7 +892,7 @@ components:
           type: integer
         description: 
           type: string
-        zone_members: 
+        zone_members:
           type: array
           items:
             type: object
