@@ -48,12 +48,36 @@ paths:
                   current_page:
                     type: integer
     post:
-      description: Posts a new Product.
+      description: Posts a new Product. JSON object parameter must contain all properties detailed in the required_attributes object for Products.
       tags:
         - products
+      parameters:
+        - in: path
+          name: product_object
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              price:
+                type: string
+              supplier:
+                type: string
+              primary_taxon:
+                type: integer
+              tax_category_id:
+                type: integer
+              variant_unit:
+                type: integer
+              variant_unit_scale:
+                type: integer
+              variant_unit_name:
+                type: string
+          required: true
+          description: JSON object representing the Product to be posted.
       responses:
-        '200':
-          description: successful operation
+        '201':
+          description: successful creation
           content:
             application/json:
               schema:
