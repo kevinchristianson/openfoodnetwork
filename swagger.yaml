@@ -55,7 +55,10 @@ paths:
         - in: path
           name: product_object
           schema:
-            $ref: '#/components/schemas/Product'
+            type: object
+            properties:
+              product:
+                $ref: '#/components/schemas/Product'
           required: true
           description: JSON object representing the Product to be posted. Only attributes listed in the Product required_attributes object are required (obtainable via GET /products/new).
       responses:
@@ -112,7 +115,10 @@ paths:
           - in: path
             name: product_object
             schema:
-              $ref: '#/components/schemas/Product'
+              type: object
+              properties:
+                product:
+                  $ref: '#/components/schemas/Product'
             required: true
             description: JSON object representing the Product attributes to be overwritten.
       responses:
@@ -183,7 +189,10 @@ paths:
         - in: path
           name: variant_object
           schema:
-            $ref: '#/components/schemas/Variant'
+            type: object
+            properties:
+              variant:
+                $ref: '#/components/schemas/Variant'
           required: true
           description: JSON object representing the Variant to be posted. Only attributes listed in the Variant required_attributes object are required (obtainable via GET /products/{product_id}/variants/new).
       responses:
@@ -259,7 +268,10 @@ paths:
           - in: path
             name: variant_object
             schema:
-              $ref: '#/components/schemas/Product'
+              type: object
+              properties:
+                variant:
+                  $ref: '#/components/schemas/Variant'
             required: true
             description: JSON object representing the Variant attributes to be overwritten.
       responses:
@@ -321,7 +333,10 @@ paths:
         - in: path
           name: zone_object
           schema:
-            $ref: '#/components/schemas/Zone'
+            type: object
+            properties:
+              zone:
+                $ref: '#/components/schemas/Zone'
           required: true
           description: JSON object representing the Zone to be posted. Only attributes listed in the Zone required_attributes object are required (obtainable via GET /zones/new).
       responses:
@@ -364,7 +379,10 @@ paths:
         - in: path
           name: zone_object
           schema:
-            $ref: '#/components/schemas/Zone'
+            type: object
+            properties:
+              zone:
+                $ref: '#/components/schemas/Zone'
           required: true
           description: JSON object representing the Zone attributes to be overwritten.
       responses:
@@ -458,7 +476,10 @@ paths:
         - in: path
           name: taxonomy_object
           schema:
-            $ref: '#/components/schemas/Taxonomy'
+            type: object
+            properties:
+              taxonomy:
+                $ref: '#/components/schemas/Taxonomy'
           required: true
           description: JSON object representing the Taxonomy to be posted. Only attributes listed in the Taxonomy required_attributes object are required (obtainable via GET /taxonomies/new).
       responses:
@@ -514,7 +535,10 @@ paths:
         - in: path
           name: taxonomy_object
           schema:
-            $ref: '#/components/schemas/Taxonomy'
+            type: object
+            properties:
+              taxonomy:
+                $ref: '#/components/schemas/Taxonomy'
           required: true
           description: JSON object representing the Taxonomy attributes to be overwritten.
       responses:
@@ -588,7 +612,10 @@ paths:
         - in: path
           name: taxon_object
           schema:
-            $ref: '#/components/schemas/Taxon'
+            type: object
+            properties:
+              taxon:
+                $ref: '#/components/schemas/Taxon'
           required: true
           description: JSON object representing the Taxon to be posted. Only attributes listed in the Taxon required_attributes object are required (obtainable via GET /taxonomies/{taxonomy_id}/taxons/new).
       responses:
@@ -665,7 +692,10 @@ paths:
         - in: path
           name: taxon_object
           schema:
-            $ref: '#/components/schemas/Taxon'
+            type: object
+            properties:
+              taxon:
+                $ref: '#/components/schemas/Taxon'
           required: true
           description: JSON object representing the Taxon attributes to be overwritten.
       responses:
