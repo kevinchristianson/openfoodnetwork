@@ -20,8 +20,8 @@ tags:
     description: Taxon endpoints
   - name: countries
     description: Country endpoints
-  - name: cookies
-    description: Cookie endpoint
+  - name: cookies_consent
+    description: Cookies_Consent endpoints
   
 paths:
   /products:
@@ -775,7 +775,7 @@ paths:
     get:
       description: Gets the client's Cookies_Consent status.
       tags:
-        - cookies
+        - cookies_consent
       responses:
         '200':
           description: successful operation
@@ -786,7 +786,7 @@ paths:
     post:
       description: Changes the client's Cookies-Consent status to true.
       tags:
-        - cookies
+        - cookies_consent
       responses:
         '200':
           description: successful operation
@@ -797,7 +797,7 @@ paths:
     delete:
       description: Changes the client's Cookies-Consent status to false.
       tags:
-        - cookies
+        - cookies_consent
       responses:
         '200':
           description: successful operation
