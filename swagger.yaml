@@ -4,7 +4,7 @@ info:
   description: Before testing, log into staging.katuma.org with the email spree@example.com and password spree123 (hit the lock icon in the top-right corner, fill the two fields, and hit the red button). Check out our repo! https://github.com/openfoodfoundation/openfoodnetwork
   version: '0.1'
 servers:
-  - url: 'https://staging.katuma.org/api/'
+  - url: 'https://staging.katuma.org/api'
 tags:
   - name: products
     description: Product endpoints
@@ -348,6 +348,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Zone'
+                
   /zones/{zone_id}:
     get:
       description: Gets a Zone by ID.
@@ -491,6 +492,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Taxonomy'
+                
   /taxonomies/new:
     get:
       description: Gets an object consisting of an array of all Taxonomy attributes and an array of required attributes to create a new Taxonomy object.
@@ -579,6 +581,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Taxon'
+                  
   /taxonomies/{taxonomy_id}/taxons/:
     get:
       description: Gets all Taxons belonging to a given Taxonomy.
@@ -629,6 +632,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Taxon'
+                  
   /taxonomies/{taxonomy_id}/taxons/new:
     get:
       description: Gets an object consisting of an array of all Taxon attributes and an array of required attributes to create a new Taxon object in a given Taxonomy.
@@ -751,6 +755,7 @@ paths:
                       $ref: '#/components/schemas/Country'
                   pages:
                     type: integer
+                    
   /countries/{country_id}:
     get:
       description: Gets the country with the given ID.
