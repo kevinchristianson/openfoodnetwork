@@ -1008,6 +1008,8 @@ components:
       properties:
         cookies_consent:
           type: boolean
+      example:
+        cookies_consent: false
     Order_Concise:
       type: object
       properties:
